@@ -1,8 +1,8 @@
 /**
  * Design system notes:
- * - Warm white canvas with a single deep accent color for clarity and visual focus.
- * - The site uses a soft editorial radius and layered shadows to feel premium but still minimal.
- * - The repeated signature detail is the browser-like project frame used across the case-study cards.
+ * - Soft ivory canvas paired with a vivid indigo-violet accent for a premium editorial look.
+ * - The site uses layered glass surfaces, subtle motion, and a refined display type for a more creative feel.
+ * - The signature motion language is a floating, layered card system that gives the portfolio depth.
  */
 export default {
   darkMode: 'class',
@@ -10,21 +10,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#FAFAF8',
+        background: '#F7F4F0',
         surface: '#FFFFFF',
-        ink: '#111114',
-        muted: '#6B7280',
-        primary: '#1D4ED8',
-        'primary-dark': '#1E3A8A',
-        'primary-light': '#DBEAFE',
+        ink: '#121321',
+        muted: '#5F6474',
+        primary: '#5F5CF1',
+        'primary-dark': '#4A43D0',
+        'primary-light': '#E8E5FF',
       },
       fontFamily: {
-        display: ['"Fraunces"', 'serif'],
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'sans-serif'],
+        sans: ['"Manrope"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {
-        primary: '0 12px 40px rgba(29, 78, 216, 0.12)',
+        primary: '0 22px 60px rgba(95, 92, 241, 0.18)',
       },
       borderRadius: {
         '4xl': '2rem',
@@ -33,7 +33,7 @@ export default {
         '8xl': '88rem',
       },
       backgroundImage: {
-        'mesh-gradient': 'radial-gradient(circle at top left, rgba(29,78,216,0.18), transparent 30%), radial-gradient(circle at bottom right, rgba(20,184,166,0.12), transparent 28%)',
+        'mesh-gradient': 'radial-gradient(circle at top left, rgba(95,92,241,0.24), transparent 28%), radial-gradient(circle at bottom right, rgba(56,189,248,0.18), transparent 30%), radial-gradient(circle at center, rgba(251,191,36,0.12), transparent 35%)',
       },
     },
   },
