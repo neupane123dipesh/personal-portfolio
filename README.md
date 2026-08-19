@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Personal Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern personal portfolio built with React, Vite, Tailwind CSS, Framer Motion, and React Router. It includes a polished single-page portfolio, animated sections, project detail route, contact form validation, and Netlify-ready configuration.
 
-## Available Scripts
+## Local development
 
-In the project directory, you can run:
+1. Install dependencies:
+   npm install
+2. Start the app:
+   npm run dev
+3. Open the local URL shown in the terminal, usually:
+   http://localhost:3000
 
-### `npm start`
+## Production build
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm run build
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The production build is generated in the `dist` folder.
 
-### `npm test`
+## Netlify deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project includes a ready-to-use `netlify.toml` file with:
 
-### `npm run build`
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Deploy the repository to Netlify using the default settings. The app is configured to work properly with Vite output.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Where to edit your personal data
 
-### `npm run eject`
+Update these files for your real information and copy:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `src/data/personalInfo.js`
+- `src/data/resumeData.js`
+- `src/data/servicesData.js`
+- `src/data/skillsData.js`
+- `src/data/projectsData.js`
+- `src/data/testimonialsData.js`
+- `src/data/blogData.js`
+- `src/data/faqData.js`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Where to add assets
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Place custom images, profile images, and resume files in:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `public/assets/`
+- `public/assets/projects/`
 
-## Learn More
+The code currently points to the generated CV file at:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `public/assets/resume.pdf`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## EmailJS setup
 
-### Code Splitting
+The contact form is wired for EmailJS but currently contains placeholder values:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```js
+// TODO: add your EmailJS keys
+const serviceId = "service_xxxxxx";
+const templateId = "template_xxxxxx";
+const publicKey = "your_public_key";
+```
 
-### Analyzing the Bundle Size
+Replace those values in `src/components/sections/Contact.jsx` with your actual EmailJS credentials before using the contact form in production.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Project structure
 
-### Making a Progressive Web App
+- `src/components/sections/` - page sections
+- `src/components/layout/` - navbar, footer, loader, and UI shell
+- `src/components/ui/` - reusable base components
+- `src/data/` - portfolio content and config
+- `src/pages/` - route-based pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Notes
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- This portfolio uses placeholder images and sample dummy content so the site looks complete immediately.
+- Replace the placeholders with your own real details, projects, images, and contact links when ready.
+- The project is intentionally styled for a premium, modern portfolio aesthetic and is ready for customization.
