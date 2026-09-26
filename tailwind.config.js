@@ -25,6 +25,7 @@ export default {
       },
       boxShadow: {
         primary: '0 22px 60px rgba(95, 92, 241, 0.18)',
+        card: '0 18px 45px rgba(15, 23, 42, 0.07)',
       },
       borderRadius: {
         '4xl': '2rem',

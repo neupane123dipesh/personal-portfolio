@@ -1,42 +1,48 @@
 import {
   FiCode,
+  FiDatabase,
+  FiGlobe,
   FiLayers,
-  FiMonitor,
-  FiSmartphone,
-  FiSearch,
-  FiPenTool,
+  FiServer,
+  FiSettings,
 } from 'react-icons/fi';
 
 const servicesData = [
   {
     icon: FiCode,
-    title: 'Frontend Development',
-    description: 'Modern React interfaces built for speed, clarity, and long-term maintainability across devices and user journeys.',
-  },
-  {
-    icon: FiMonitor,
-    title: 'Web Design',
-    description: 'Thoughtful UX design systems and landing pages that translate product goals into intuitive digital experiences.',
+    title: 'Full-Stack Web Apps',
+    description:
+      'End-to-end delivery with React front ends and .NET or Node backends — structured for real users and long-term maintenance.',
   },
   {
     icon: FiLayers,
-    title: 'UI/UX Design',
-    description: 'Wireframes, interface exploration, and design refinement that prioritize usability, hierarchy, and conversion.',
+    title: 'React & UI Engineering',
+    description:
+      'Accessible, responsive interfaces with thoughtful hierarchy, performance, and component patterns that scale with the product.',
   },
   {
-    icon: FiSmartphone,
-    title: 'Responsive App UI',
-    description: 'Cross-device experiences for web and mobile-first products, tuned for accessibility and user confidence.',
+    icon: FiServer,
+    title: 'API & Backend Services',
+    description:
+      'RESTful APIs, business logic, and integration layers that connect dashboards, CMS content, and operational workflows.',
   },
   {
-    icon: FiSearch,
-    title: 'SEO & Performance',
-    description: 'Optimization for fast loading, accessible structure, and search discoverability without sacrificing design quality.',
+    icon: FiDatabase,
+    title: 'Database Design',
+    description:
+      'Schema design and data modelling on SQL Server and MySQL — inventory, accounting, RBAC, and reporting-friendly structures.',
   },
   {
-    icon: FiPenTool,
-    title: 'Brand Identity',
-    description: 'Visual direction, messaging support, and digital consistency for startups and personal brands seeking focus.',
+    icon: FiGlobe,
+    title: 'CMS & Marketing Sites',
+    description:
+      'Prismic-powered content platforms and marketing sites that editors can update without touching code.',
+  },
+  {
+    icon: FiSettings,
+    title: 'Team Delivery',
+    description:
+      'Git workflows, code review, and agile collaboration — the same practices used at Danfe Solutions and Nepal Telecom.',
   },
 ];
 

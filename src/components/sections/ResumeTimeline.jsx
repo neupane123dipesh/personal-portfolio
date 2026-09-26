@@ -10,7 +10,7 @@ export default function ResumeTimeline() {
   return (
     <section id="resume" className="py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <SectionHeading eyebrow="Resume" title="Education and hands-on experience." description="I bring together academic fundamentals, project execution, and practical UX thinking in a development workflow built for real-world product work." />
+        <SectionHeading eyebrow="Experience" title="Where I have built and shipped." description="Developer at Danfe Solutions, intern at Nepal Telecom, and IT consultant — aligned with my latest CV." />
 
         <div className="mb-8 inline-flex rounded-full border border-slate-200 bg-white p-1 dark:border-slate-700 dark:bg-slate-900">
           {['experience', 'education'].map((tab) => (

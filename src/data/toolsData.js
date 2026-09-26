@@ -1,16 +1,16 @@
 const toolsData = [
   'React',
-  'Tailwind',
-  'JavaScript',
+  '.NET 8',
+  'SQL Server',
   'Node.js',
-  'GitHub',
-  'Figma',
-  'MySQL',
+  'Tailwind CSS',
   'Prismic',
+  'MySQL',
+  'GitHub',
   'VS Code',
   'Jira',
   'PHP',
-  'C++',
+  'REST APIs',
 ];
 
 export default toolsData;

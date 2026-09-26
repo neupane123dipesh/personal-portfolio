@@ -1,75 +1,123 @@
 const projectsData = [
   {
-    id: 'fleet-management-system',
-    title: 'Fleet Management System',
-    category: 'Web App',
-    tags: ['React', 'Node.js', 'MySQL'],
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
-    description: 'An operational dashboard for managing vehicles, maintenance schedules, expense reporting, and live performance analytics.',
-    challenge: 'The client needed a way to monitor fleet activity, plan staff allocation, and reduce operational delays without sacrificing visibility.',
-    solution: 'I designed and built a full-stack dashboard with tracking modules, predictive fuel insights, and scheduling logic tailored for day-to-day operational efficiency.',
-    result: 'The system improved organization across maintenance workflows and created more reliable planning across multiple use cases.',
-    slug: 'fleet-management-system',
+    id: 'kajal-naina-erp',
+    title: 'Kajal Naina — Multi-Tenant Retail ERP',
+    category: 'Enterprise',
+    period: '2026 — Present',
+    tags: ['React', '.NET 8', 'SQL Server'],
+    preview: { gradientClass: 'bg-gradient-to-br from-indigo-600 via-violet-700 to-slate-900' },
+    description:
+      'Multi-outlet retail ERP with FIFO inventory, double-entry accounting, automated voucher workflows, and POS integration.',
+    challenge:
+      'Retail clients needed unified stock, purchasing, and sales tracking across outlets without duplicating data entry or losing auditability.',
+    solution:
+      'Implemented multi-tenant architecture on .NET and SQL Server with React dashboards for inventory, accounting, and point-of-sale flows.',
+    result:
+      'A single system supports multiple outlets with consistent inventory logic, financial controls, and operational visibility.',
+    slug: 'kajal-naina-erp',
+    liveUrl: null,
+    githubUrl: null,
+    hasCaseStudy: true,
   },
   {
     id: 'venue-booking-platform',
     title: 'Venue Booking Platform',
-    category: 'Web App',
-    tags: ['React', '.NET', 'UX'],
-    image: 'https://images.unsplash.com/photo-1517292987719-0369a794ec0f?auto=format&fit=crop&w=1200&q=80',
-    description: 'A marketplace for venue discovery, package customization, and secure booking flows with an admin dashboard.',
-    challenge: 'The solution needed to support discovery, flexible pricing, and detailed business operations for venue administrators.',
-    solution: 'I developed a rich search and booking experience with filtering, admin analytics, and payment workflows designed for clarity and trust.',
-    result: 'It streamlined booking decisions and gave providers better visibility into inventory, revenue, and operational health.',
+    category: 'Marketplace',
+    period: '2025 — 2026',
+    tags: ['React', '.NET', 'REST APIs'],
+    preview: { gradientClass: 'bg-gradient-to-br from-sky-600 via-cyan-700 to-slate-900' },
+    description:
+      'Marketplace for venue discovery and booking with advanced filters, package customisation, and provider admin tooling.',
+    challenge:
+      'Venue providers needed discovery, flexible packages, and operational control while customers expected trustworthy booking flows.',
+    solution:
+      'Built search and booking UX on React with a .NET backend; admin portal covers inventory, bookings, payments, and analytics.',
+    result:
+      'Streamlined booking decisions and gave providers clearer visibility into revenue and utilisation.',
     slug: 'venue-booking-platform',
+    liveUrl: null,
+    githubUrl: null,
+    hasCaseStudy: true,
   },
   {
     id: 'duty-chart-website',
-    title: 'Duty Chart Website',
-    category: 'Dashboard',
+    title: 'Duty Chart Management System',
+    category: 'Internal Tool',
+    period: '2025 — 2026',
     tags: ['React', 'Node.js', 'MySQL'],
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80',
-    description: 'An internal employee duty management portal built to simplify scheduling, assignment, and status tracking.',
-    challenge: 'The office had no central system for tracking task assignments and shift planning across teams.',
-    solution: 'I built a clean dashboard with role-based access, task allocation features, and intuitive status controls for managers.',
-    result: 'The platform reduced operational friction and made team coordination more transparent and manageable.',
+    preview: { gradientClass: 'bg-gradient-to-br from-emerald-600 via-teal-700 to-slate-900' },
+    description:
+      'Employee duty management with role-based access, task assignment, and dashboard views for office operations.',
+    challenge:
+      'NTC Jawalakhel lacked a central system for duty allocation and status tracking across teams.',
+    solution:
+      'Delivered React dashboards with RBAC, task modules, and manager-friendly assignment workflows backed by Node.js and MySQL.',
+    result:
+      'Reduced coordination friction and improved transparency for duty planning.',
     slug: 'duty-chart-website',
+    liveUrl: null,
+    githubUrl: null,
+    hasCaseStudy: true,
   },
   {
     id: 'sachcho-cms',
     title: 'Sachcho — CMS Web App',
-    category: 'Landing Page',
-    tags: ['React', 'Prismic', 'CMS'],
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-    description: 'A content-managed web application enabling editors to update pages and articles without developer dependency.',
-    challenge: 'The site needed a balance between attractive marketing presentation and practical editorial flexibility.',
-    solution: 'I implemented a CMS-driven React interface with dynamic pages and article management for content teams and editors.',
-    result: 'The result was a fast, flexible platform that made publishing easier while keeping the experience polished.',
+    category: 'CMS',
+    period: '2026',
+    tags: ['React', 'Prismic', 'Headless CMS'],
+    preview: { gradientClass: 'bg-gradient-to-br from-fuchsia-600 via-purple-700 to-slate-900' },
+    description:
+      'Content-managed web application for dynamic articles and site-wide content with editor-friendly Prismic integration.',
+    challenge:
+      'Non-technical staff needed to publish and update content without developer involvement.',
+    solution:
+      'React front end wired to Prismic for structured content, preview-friendly pages, and flexible editorial workflows.',
+    result:
+      'Faster publishing cycles with a maintainable, CMS-driven codebase.',
     slug: 'sachcho-cms',
+    liveUrl: 'https://sachcho.com',
+    githubUrl: null,
+    hasCaseStudy: true,
   },
   {
     id: 'danfe-solutions-site',
-    title: 'Danfe Solutions Marketing Site',
-    category: 'Landing Page',
-    tags: ['React', 'Tailwind', 'Design'],
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
-    description: 'A modern corporate website for a digital services company, focused on clarity, trust, and brand positioning.',
-    challenge: 'The company needed a clean online presence with a supportive narrative for services and expertise.',
-    solution: 'I designed and developed a responsive marketing site with refined content structure, polished spacing, and conversion-focused sections.',
-    result: 'The site gave the brand a more professional digital identity and an improved first impression across devices.',
+    title: 'Danfe Solutions — Company Website',
+    category: 'Marketing',
+    period: '2026',
+    tags: ['React', 'Tailwind CSS'],
+    preview: { gradientClass: 'bg-gradient-to-br from-amber-500 via-orange-600 to-slate-900' },
+    description:
+      'Public marketing site for Danfe Solutions — responsive layout, service narrative, and performance-focused React implementation.',
+    challenge:
+      'The company needed a credible digital presence that reflects its product and services work.',
+    solution:
+      'Designed information architecture and component system in React with Tailwind for consistent responsive styling.',
+    result:
+      'A polished brand-facing site that supports client trust and lead generation.',
     slug: 'danfe-solutions-site',
+    liveUrl: 'https://danfesolution.com',
+    githubUrl: null,
+    hasCaseStudy: true,
   },
   {
-    id: 'portfolio-case-study',
-    title: 'Portfolio & Case Study Experience',
-    category: 'Design',
-    tags: ['Portfolio', 'UI/UX', 'Motion'],
-    image: 'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80',
-    description: 'A polished personal portfolio concept designed to present work, process, and personality with scalable structure.',
-    challenge: 'The goal was to create a memorable portfolio that signals credibility without feeling over-designed or generic.',
-    solution: 'I layered clean typography, restrained motion, and a structured narrative to showcase work and professional positioning.',
-    result: 'The experience communicates clarity and consistency while remaining flexible for future portfolio growth.',
-    slug: 'portfolio-case-study',
+    id: 'himalayan-matrix',
+    title: 'The Himalayan Matrix',
+    category: 'CMS',
+    period: '2026',
+    tags: ['CMS', 'React', 'Content'],
+    preview: { gradientClass: 'bg-gradient-to-br from-rose-500 via-red-700 to-slate-900' },
+    description:
+      'CMS-based web project developed and maintained at Danfe Solutions.',
+    challenge:
+      'Content-heavy delivery required reliable CMS workflows and maintainable front-end structure.',
+    solution:
+      'Built and maintained CMS-integrated pages with editorial flexibility and production deployment practices.',
+    result:
+      'Stable content operations with a structured, extensible front end.',
+    slug: 'himalayan-matrix',
+    liveUrl: null,
+    githubUrl: null,
+    hasCaseStudy: true,
   },
 ];
 

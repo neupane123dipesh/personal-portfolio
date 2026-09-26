@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import navLinks from '../../data/navLinks';
+import { markHireIntent } from '../../utils/hireIntent';
 
 export default function MobileMenu({ isOpen, onClose, activeSection }) {
   return (
@@ -27,6 +28,19 @@ export default function MobileMenu({ isOpen, onClose, activeSection }) {
                 </Link>
               </motion.div>
             ))}
+            <Link
+              to="contact"
+              smooth
+              offset={-90}
+              duration={500}
+              onClick={() => {
+                markHireIntent();
+                onClose();
+              }}
+              className="mt-2 block rounded-xl bg-primary px-4 py-3 text-center text-base font-semibold text-white"
+            >
+              Hire Me
+            </Link>
           </div>
         </motion.div>
       )}

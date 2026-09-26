@@ -1,175 +1,191 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FiArrowDown, FiArrowRight, FiDownload, FiMonitor, FiStar } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FiArrowDown, FiArrowRight, FiDownload, FiGithub, FiLinkedin } from 'react-icons/fi';
 import { Link } from 'react-scroll';
 import Badge from '../ui/Badge';
+import HeroNetworkGraph from '../ui/HeroNetworkGraph';
 import personalInfo from '../../data/personalInfo';
+import { markHireIntent } from '../../utils/hireIntent';
+
+const slideLeft = {
+  hidden: { opacity: 0, x: -28 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const slideRight = {
+  hidden: { opacity: 0, x: 28 },
+  visible: { opacity: 1, x: 0 },
+};
 
 export default function Hero() {
-  const roles = ['Frontend Developer', 'UI/UX Enthusiast', 'Problem Solver'];
-  const [roleIndex, setRoleIndex] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => setRoleIndex((current) => (current + 1) % roles.length), 2200);
-    return () => clearInterval(timer);
-  }, [roles.length]);
+    setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
+
+  const { featuredProject } = personalInfo;
 
   return (
-    <section id="home" className="hero-shell relative overflow-hidden pt-28 md:pt-36">
-      <div className="absolute inset-0 -z-10 bg-mesh-gradient opacity-90" />
-      <div className="absolute left-10 top-28 -z-10 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
-      <div className="absolute right-10 top-12 -z-10 h-72 w-72 rounded-full bg-sky-200/60 blur-3xl" />
+    <section
+      id="home"
+      className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-slate-200/80 bg-surface pt-24 dark:border-slate-800 dark:bg-[#09090b]"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 18% 42%, rgba(95, 92, 241, 0.09), transparent 48%), radial-gradient(circle at 82% 18%, rgba(14, 165, 233, 0.08), transparent 42%)',
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-16 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:pb-24">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-12 md:px-10 lg:grid-cols-2 lg:gap-6 lg:py-16">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          initial="hidden"
+          animate="visible"
+          variants={slideLeft}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 max-w-xl"
         >
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
-            <Badge dot className="mb-6">{personalInfo.freelanceStatus || 'Available for work'}</Badge>
-          </motion.div>
+          <Badge dot className="mb-8 border-primary/20 bg-primary/5">
+            {personalInfo.freelanceStatus} · {personalInfo.location}
+          </Badge>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12 }}
-            className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-primary"
-          >
-            {personalInfo.title || 'Your Title Here'}
-          </motion.p>
-
-          <h1 className="hero-title font-display text-5xl leading-[0.8] text-ink dark:text-slate-100 md:text-7xl">
-            <motion.span initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="block">
-              Hi, I&apos;m <span className="text-gradient">{personalInfo.firstName || 'Your Name'}</span>
-            </motion.span>
-
-            <div className="mt-2 block h-[1.1em] overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={roles[roleIndex]}
-                  initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -24, filter: 'blur(8px)' }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                  className="block text-primary"
-                >
-                  {roles[roleIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </div>
+          <h1 className="font-display text-[clamp(2.35rem,5vw,4.25rem)] font-bold leading-[1.02] tracking-[-0.04em] text-ink dark:text-slate-50">
+            <span className="block text-slate-600 dark:text-slate-300">Hi, I&apos;m {personalInfo.firstName}.</span>
+            <span className="mt-2 block bg-gradient-to-r from-primary via-violet-600 to-sky-500 bg-clip-text text-transparent">
+              {personalInfo.title}
+            </span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-            className="mt-6 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300"
-          >
-            {personalInfo.tagline || 'I create meaningful digital experiences...'}
-          </motion.p>
+          <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+            {personalInfo.titleAccent}
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 flex flex-wrap gap-4"
-          >
+          <p className="mt-6 max-w-lg text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg">
+            {personalInfo.tagline}
+          </p>
+
+          <div className="mt-9 flex flex-wrap gap-3">
             <Link
               to="projects"
-              smooth={true}
-              offset={-80}
+              smooth
+              offset={-88}
               duration={500}
-              className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-primary transition duration-300 hover:-translate-y-0.5 hover:bg-primary-dark"
+              className="inline-flex min-h-[44px] cursor-pointer items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-primary transition hover:-translate-y-0.5 hover:bg-primary-dark"
             >
-              View My Work <FiArrowRight />
+              View work <FiArrowRight />
+            </Link>
+            <Link
+              to="contact"
+              smooth
+              offset={-88}
+              duration={500}
+              onClick={markHireIntent}
+              className="inline-flex min-h-[44px] cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:border-primary/40 hover:text-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            >
+              Hire me
             </Link>
             <a
-              href={personalInfo.resumeFileUrl || '#'}
+              href={personalInfo.resumeFileUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-5 py-3 text-sm font-semibold text-ink backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:text-primary dark:text-slate-300"
             >
-              <FiDownload /> Download CV
+              <FiDownload /> CV
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            {personalInfo.stats.slice(0, 3).map((stat) => (
-              <div
+          <div className="mt-14 flex flex-wrap items-end gap-10 border-t border-slate-200 pt-10 dark:border-slate-800">
+            {personalInfo.stats.map((stat, index) => (
+              <motion.div
                 key={stat.label}
-                className="glass-chip rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm text-slate-700 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200"
+                animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
+                transition={{ duration: 3.2, repeat: Infinity, delay: index * 0.12 }}
               >
-                <span className="font-semibold text-ink dark:text-slate-100">{stat.value}{stat.suffix}</span> {stat.label}
-              </div>
+                <p className="font-display text-3xl font-bold tracking-tight text-ink dark:text-slate-50">
+                  {stat.value}
+                  {stat.suffix}
+                </p>
+                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                  {stat.label}
+                </p>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
+
+          <div className="mt-8 flex gap-3">
+            <a
+              href={personalInfo.socials.github}
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              aria-label="GitHub profile"
+            >
+              <FiGithub />
+            </a>
+            <a
+              href={personalInfo.socials.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              aria-label="LinkedIn profile"
+            >
+              <FiLinkedin />
+            </a>
+          </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 18 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
-          className="relative mx-auto w-full max-w-xl"
+          initial="hidden"
+          animate="visible"
+          variants={slideRight}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+          className="relative mx-auto h-[min(520px,62vh)] w-full max-w-xl lg:max-w-none lg:justify-self-end"
         >
-          <div className="orb orb-one" />
-          <div className="orb orb-two" />
+          <div className="absolute inset-0 overflow-hidden rounded-[2rem] border border-slate-200/90 bg-gradient-to-br from-slate-50 to-white dark:border-slate-800 dark:from-slate-950 dark:to-slate-900">
+            {!reducedMotion && <HeroNetworkGraph className="opacity-90" />}
+            {reducedMotion && (
+              <div className="flex h-full items-center justify-center bg-[radial-gradient(circle_at_center,rgba(95,92,241,0.12),transparent_65%)]" />
+            )}
+          </div>
 
-          <motion.div
-            animate={{ y: [0, -8, 0], rotate: [0, 0.7, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative overflow-hidden rounded-[2.25rem] border border-slate-200/70 bg-white/65 p-4 shadow-[0_35px_80px_rgba(17,19,33,0.13)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70"
-          >
-            <div className="absolute left-6 top-6 z-10 rounded-full bg-emerald-500/95 px-3 py-2 text-xs font-semibold text-white shadow-lg">
-              Available for freelance
-            </div>
+          <div className="absolute bottom-6 left-6 right-6 z-10 flex gap-4 rounded-2xl border border-white/60 bg-white/85 p-4 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-700/80 dark:bg-slate-900/90">
             <img
-              src={personalInfo.heroImage || personalInfo.profileImage}
-              alt={personalInfo.fullName || 'Profile'}
-              className="hero-image h-[540px] w-full rounded-[1.5rem] object-cover"
+              src={personalInfo.profileImage}
+              alt={personalInfo.fullName}
+              width={88}
+              height={88}
+              className="h-[88px] w-[88px] shrink-0 rounded-2xl object-cover ring-2 ring-primary/20"
+              loading="eager"
+              fetchPriority="high"
             />
-          </motion.div>
-
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -bottom-4 left-5 rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-[0_20px_35px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary"><FiMonitor /></div>
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.18em] text-slate-500">Focus</p>
-                <p className="font-semibold text-ink dark:text-slate-100">Responsive design</p>
-              </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Featured build</p>
+              <p className="mt-1 truncate font-display text-lg font-semibold text-ink dark:text-slate-50">
+                {featuredProject.name}
+              </p>
+              <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-600 dark:text-slate-300">
+                {featuredProject.summary}
+              </p>
+              <p className="mt-2 font-mono text-[10px] text-slate-500">
+                {featuredProject.org} · {featuredProject.stack}
+              </p>
             </div>
-          </motion.div>
-
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 5.1, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -right-4 top-8 rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-[0_20px_35px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
-          >
-            <div className="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-              <FiStar className="text-amber-500" /> 5/5 client experience
-            </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
-      <div className="flex justify-center pb-8">
+      <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 md:flex">
         <Link
           to="about"
-          smooth={true}
-          offset={-90}
+          smooth
+          offset={-88}
           duration={500}
-          className="flex cursor-pointer flex-col items-center gap-2 text-sm text-slate-500 transition hover:text-primary dark:text-slate-300"
+          className="flex cursor-pointer flex-col items-center gap-1 text-xs font-medium text-slate-500 transition hover:text-primary dark:text-slate-400"
         >
-          <span>Scroll</span>
+          Scroll
           <FiArrowDown className="animate-bounce" />
         </Link>
       </div>

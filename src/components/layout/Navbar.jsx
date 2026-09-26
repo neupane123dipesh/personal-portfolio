@@ -7,6 +7,7 @@ import useActiveSection from '../../hooks/useActiveSection';
 import useScrollProgress from '../../hooks/useScrollProgress';
 import { useTheme } from '../../context/ThemeContext';
 import MobileMenu from './MobileMenu';
+import { markHireIntent } from '../../utils/hireIntent';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -86,6 +87,7 @@ export default function Navbar() {
               smooth={true}
               offset={-90}
               duration={500}
+              onClick={markHireIntent}
               className="hidden cursor-pointer rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-primary transition hover:bg-primary-dark md:inline-flex"
             >
               Hire Me

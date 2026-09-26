@@ -1,86 +1,47 @@
-# Personal Portfolio Website
+# Dipesh Neupane — Personal Portfolio
 
-A modern personal portfolio built with React, Vite, Tailwind CSS, Framer Motion, and React Router. It includes a polished single-page portfolio, animated sections, project detail route, contact form validation, and Netlify-ready configuration.
+Production-ready portfolio built with **React**, **Vite**, **Tailwind CSS**, **Framer Motion**, **React Three Fiber**, and **React Router**. Content is aligned with `docs/Dipesh_Neupane_CV updated.pdf`.
 
 ## Local development
 
-1. Install dependencies:
-   npm install
-2. Start the app:
-   npm run dev
-3. Open the local URL shown in the terminal, usually:
-   http://localhost:3000
+```bash
+npm install
+npm run dev
+```
+
+Open the URL shown in the terminal (typically `http://localhost:3000`).
 
 ## Production build
 
+```bash
 npm run build
-
-The production build is generated in the `dist` folder.
-
-## Netlify deployment
-
-This project includes a ready-to-use `netlify.toml` file with:
-
-```toml
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+npm run preview
 ```
 
-Deploy the repository to Netlify using the default settings. The app is configured to work properly with Vite output.
+Output is written to `dist/` (configured for Netlify via `netlify.toml`).
 
-## Where to edit your personal data
+## Contact form (email to your inbox)
 
-Update these files for your real information and copy:
+The contact form and **Hire Me** buttons send mail through one of:
 
-- `src/data/personalInfo.js`
-- `src/data/resumeData.js`
-- `src/data/servicesData.js`
-- `src/data/skillsData.js`
-- `src/data/projectsData.js`
-- `src/data/testimonialsData.js`
-- `src/data/blogData.js`
-- `src/data/faqData.js`
+1. **Web3Forms (recommended)** — copy `.env.example` to `.env` and set `VITE_WEB3FORMS_ACCESS_KEY` from [web3forms.com](https://web3forms.com) (register with `dipeshneupane213@gmail.com`).
+2. **EmailJS** — set `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY`.
+3. **Fallback** — if no keys are configured, submitting opens the visitor’s email client via `mailto:` to `VITE_CONTACT_EMAIL` (defaults to your Gmail).
 
-## Where to add assets
+On Netlify, add the same variables under **Site settings → Environment variables**.
 
-Place custom images, profile images, and resume files in:
+## Content & assets
 
-- `public/assets/`
-- `public/assets/projects/`
+| File | Purpose |
+|------|---------|
+| `src/data/personalInfo.js` | Name, summary, stats, socials |
+| `src/data/resumeData.js` | Experience & education |
+| `src/data/projectsData.js` | Case studies (gradient previews, no stock photos) |
+| `src/data/skillsData.js` | Skill groups from CV |
+| `public/assets/Dipesh_Neupane_CV.pdf` | Downloadable CV |
 
-The code currently points to the generated CV file at:
+## Stack highlights
 
-- `public/assets/resume.pdf`
-
-## EmailJS setup
-
-The contact form is wired for EmailJS but currently contains placeholder values:
-
-```js
-// TODO: add your EmailJS keys
-const serviceId = "service_xxxxxx";
-const templateId = "template_xxxxxx";
-const publicKey = "your_public_key";
-```
-
-Replace those values in `src/components/sections/Contact.jsx` with your actual EmailJS credentials before using the contact form in production.
-
-## Project structure
-
-- `src/components/sections/` - page sections
-- `src/components/layout/` - navbar, footer, loader, and UI shell
-- `src/components/ui/` - reusable base components
-- `src/data/` - portfolio content and config
-- `src/pages/` - route-based pages
-
-## Notes
-
-- This portfolio uses placeholder images and sample dummy content so the site looks complete immediately.
-- Replace the placeholders with your own real details, projects, images, and contact links when ready.
-- The project is intentionally styled for a premium, modern portfolio aesthetic and is ready for customization.
+- Three.js hero (`src/components/three/HeroScene.jsx`) — disabled when `prefers-reduced-motion: reduce`
+- No Unsplash / fake testimonials / filler blog
+- Dark mode via `ThemeContext`

@@ -4,7 +4,7 @@ import SectionHeading from '../ui/SectionHeading';
 import ProjectCard from '../ui/ProjectCard';
 import projectsData from '../../data/projectsData';
 
-const filters = ['All', 'Web App', 'Landing Page', 'Dashboard', 'Design'];
+const filters = ['All', 'Enterprise', 'Marketplace', 'Internal Tool', 'CMS', 'Marketing'];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -17,7 +17,11 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <SectionHeading eyebrow="Projects" title="Selected work and product thinking." description="A mix of dashboard, marketing, and interface design work built for real-world product needs and streamlined user experience." />
+        <SectionHeading
+          eyebrow="Work"
+          title="Production projects from my CV."
+          description="Retail ERP, venue marketplace, NTC duty tooling, Prismic CMS apps, and client marketing sites — no stock imagery, just real deliverables."
+        />
 
         <div className="mb-10 flex flex-wrap gap-3">
           {filters.map((filter) => (

@@ -1,34 +1,40 @@
 const personalInfo = {
   fullName: 'Dipesh Neupane',
   firstName: 'Dipesh',
-  title: 'Frontend Developer & Product-minded Problem Solver',
-  tagline: 'I design and build clean, accessible web experiences that balance performance, clarity, and real business impact.',
+  title: 'Full-Stack Developer',
+  titleAccent: 'React · .NET · SQL Server',
+  tagline:
+    'I build and ship production web apps — multi-tenant retail ERP, CMS platforms, and enterprise dashboards — with clear UI and solid backend foundations.',
   aboutParagraph1:
-    'I am a frontend-focused developer with a Bachelor\'s in Computer Science & IT and hands-on experience building production-grade web applications. My work sits at the intersection of UI craft, engineering fundamentals, and practical product thinking.',
+    'Full-stack developer with a B.Sc. in Computer Science & IT (Tribhuvan University). I currently build Kajal Naina and client CMS products at Danfe Solutions, and have shipped internal tooling at Nepal Telecom.',
   aboutParagraph2:
-    'I enjoy creating responsive interfaces, improving developer workflows, and turning complex requirements into user-friendly experiences. I am especially interested in React, modern frontend architecture, and collaborative product building where quality and usability matter.',
+    'My day-to-day spans React interfaces, .NET APIs, SQL Server data models, and Git-based delivery with code review. I care about readable code, predictable UX, and outcomes you can demo to stakeholders.',
   email: 'dipeshneupane213@gmail.com',
   phone: '+977-9818995031',
   location: 'Kathmandu, Nepal',
-  birthday: 'December 3, 2002',
-  website: 'dipeshneupane.com.np',
-  degree: 'B.Sc.CSIT',
+  degree: 'B.Sc. CSIT — Tribhuvan University (2021–2026)',
   freelanceStatus: 'Available',
-  resumeFileUrl: '/assets/resume.pdf',
-  profileImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
-  heroImage: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+  resumeFileUrl: '/assets/Dipesh_Neupane_CV%20updated.pdf',
+  profileImage: '/assets/dipesh.jpg',
+  portfolioUrl: 'https://dipeshneupane.com.np',
   socials: {
     github: 'https://github.com/neupane123dipesh',
-    linkedin: 'https://linkedin.com/in/dipeshneupane1',
-    twitter: 'https://x.com/',
-    instagram: 'https://instagram.com/',
-    dribbble: '',
+    linkedin: 'https://www.linkedin.com/in/dipeshneupane1',
   },
+  featuredProject: {
+    name: 'Kajal Naina — Retail ERP',
+    org: 'Danfe Solutions',
+    stack: 'React · .NET 8 · SQL Server',
+    summary: 'Multi-outlet inventory, accounting, and POS with multi-tenant architecture.',
+  },
+  achievements: [
+    'Organised the annual sports program at Asian School of Management and Technology, including e-sports and indoor games.',
+    'Volunteered at the Asian Hackathon (ASMT), supporting event operations and participant coordination.',
+  ],
   stats: [
-    { label: 'Years Experience', value: 2, suffix: '+' },
-    { label: 'Projects Completed', value: 12, suffix: '+' },
-    { label: 'Happy Clients', value: 7, suffix: '+' },
-    { label: 'Cups of Coffee', value: 250, suffix: '+' },
+    { label: 'Years experience', value: 2, suffix: '+' },
+    { label: 'Production projects', value: 6, suffix: '+' },
+    { label: 'Teams shipped with', value: 3, suffix: '' },
   ],
 };
 
