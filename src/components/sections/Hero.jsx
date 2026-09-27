@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FiArrowDown, FiArrowRight, FiDownload, FiGithub, FiLinkedin } from 'react-icons/fi';
 import { Link } from 'react-scroll';
 import Badge from '../ui/Badge';
-import HeroNetworkGraph from '../ui/HeroNetworkGraph';
+import TetrisGame from '../ui/TetrisGame';
 import personalInfo from '../../data/personalInfo';
 import { markHireIntent } from '../../utils/hireIntent';
 
@@ -29,53 +29,52 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-slate-200/80 bg-surface pt-24 dark:border-slate-800 dark:bg-[#09090b]"
+      className="relative isolate grid min-h-screen overflow-hidden bg-[#f7f3ee] pt-20 dark:bg-[#09090b] lg:grid-cols-2"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-70"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 18% 42%, rgba(95, 92, 241, 0.09), transparent 48%), radial-gradient(circle at 82% 18%, rgba(14, 165, 233, 0.08), transparent 42%)',
-        }}
-        aria-hidden="true"
-      />
+      {/* Background layers */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(99,102,241,0.12),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(14,165,233,0.12),transparent_36%),radial-gradient(circle_at_50%_70%,rgba(168,85,247,0.08),transparent_40%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] [background-size:48px_48px]" />
+      <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-cyan-400/10 blur-3xl" />
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-12 md:px-10 lg:grid-cols-2 lg:gap-6 lg:py-16">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={slideLeft}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 max-w-xl"
-        >
-          <Badge dot className="mb-8 border-primary/20 bg-primary/5">
-            {personalInfo.freelanceStatus} · {personalInfo.location}
-          </Badge>
+      {/* Left content */}
+      <motion.div
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 flex flex-col justify-center px-6 py-12 sm:px-8 md:px-10 lg:py-0"
+      >
+        <div className="max-w-lg space-y-8">
+          <div>
+            <Badge dot className="mb-8 border-indigo-500/20 bg-indigo-500/5 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-200">
+              {personalInfo.freelanceStatus} · {personalInfo.location}
+            </Badge>
 
-          <h1 className="font-display text-[clamp(2.35rem,5vw,4.25rem)] font-bold leading-[1.02] tracking-[-0.04em] text-ink dark:text-slate-50">
-            <span className="block text-slate-600 dark:text-slate-300">Hi, I&apos;m {personalInfo.firstName}.</span>
-            <span className="mt-2 block bg-gradient-to-r from-primary via-violet-600 to-sky-500 bg-clip-text text-transparent">
-              {personalInfo.title}
-            </span>
-          </h1>
+            <h1 className="font-display text-[clamp(2.8rem,5.5vw,4.5rem)] font-bold leading-[1.02] tracking-[-0.06em] text-slate-900 dark:text-slate-50">
+              <span className="block text-slate-600 dark:text-slate-300">Hi, I&apos;m {personalInfo.firstName}.</span>
+              <span className="mt-3 block bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-500 bg-clip-text text-transparent">
+                {personalInfo.title}
+              </span>
+            </h1>
 
-          <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-            {personalInfo.titleAccent}
-          </p>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
+              {personalInfo.titleAccent}
+            </p>
+          </div>
 
-          <p className="mt-6 max-w-lg text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg">
+          <p className="max-w-md text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg">
             {personalInfo.tagline}
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 pt-2">
             <Link
               to="projects"
               smooth
               offset={-88}
               duration={500}
-              className="inline-flex min-h-[44px] cursor-pointer items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-primary transition hover:-translate-y-0.5 hover:bg-primary-dark"
+              className="inline-flex min-h-[48px] cursor-pointer items-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl active:translate-y-0 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
             >
-              View work <FiArrowRight />
+              View work <FiArrowRight className="size-4" />
             </Link>
             <Link
               to="contact"
@@ -83,7 +82,7 @@ export default function Hero() {
               offset={-88}
               duration={500}
               onClick={markHireIntent}
-              className="inline-flex min-h-[44px] cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:border-primary/40 hover:text-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+              className="inline-flex min-h-[48px] cursor-pointer items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur-sm transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700 dark:border-slate-700 dark:bg-slate-900/75 dark:text-slate-100 dark:hover:border-indigo-600 dark:hover:bg-slate-800"
             >
               Hire me
             </Link>
@@ -91,102 +90,127 @@ export default function Hero() {
               href={personalInfo.resumeFileUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:text-primary dark:text-slate-300"
+              className="inline-flex min-h-[48px] items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
             >
-              <FiDownload /> CV
+              <FiDownload className="size-4" /> CV
             </a>
           </div>
 
-          <div className="mt-14 flex flex-wrap items-end gap-10 border-t border-slate-200 pt-10 dark:border-slate-800">
+          {/* Stats row */}
+          <div className="flex flex-wrap items-end gap-8 border-t border-slate-200/80 pt-8 dark:border-slate-800">
             {personalInfo.stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
                 transition={{ duration: 3.2, repeat: Infinity, delay: index * 0.12 }}
               >
-                <p className="font-display text-3xl font-bold tracking-tight text-ink dark:text-slate-50">
+                <p className="font-display text-2xl font-bold text-slate-900 dark:text-slate-50 md:text-3xl">
                   {stat.value}
                   {stat.suffix}
                 </p>
-                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
                   {stat.label}
                 </p>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-8 flex gap-3">
+          {/* Social links */}
+          <div className="flex gap-3 pt-2">
             <a
               href={personalInfo.socials.github}
               target="_blank"
               rel="noreferrer"
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white/85 text-slate-600 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
               aria-label="GitHub profile"
             >
-              <FiGithub />
+              <FiGithub className="size-5" />
             </a>
             <a
               href={personalInfo.socials.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white/85 text-slate-600 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
               aria-label="LinkedIn profile"
             >
-              <FiLinkedin />
+              <FiLinkedin className="size-5" />
             </a>
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={slideRight}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-          className="relative mx-auto h-[min(520px,62vh)] w-full max-w-xl lg:max-w-none lg:justify-self-end"
-        >
-          <div className="absolute inset-0 overflow-hidden rounded-[2rem] border border-slate-200/90 bg-gradient-to-br from-slate-50 to-white dark:border-slate-800 dark:from-slate-950 dark:to-slate-900">
-            {!reducedMotion && <HeroNetworkGraph className="opacity-90" />}
+      {/* Right side - Game */}
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        className="relative flex flex-col items-center justify-center overflow-hidden px-4 py-12 sm:px-6 md:px-8 lg:py-0"
+      >
+        <div className="relative w-full max-w-md space-y-4">
+          {/* Game container */}
+          <div className="relative h-[360px] overflow-hidden rounded-2xl border border-slate-200/70 shadow-[0_30px_80px_rgba(15,23,42,0.12)] dark:border-slate-700/70 dark:shadow-[0_30px_80px_rgba(15,23,42,0.35)] flex items-center justify-center bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+            {!reducedMotion && <TetrisGame />}
             {reducedMotion && (
-              <div className="flex h-full items-center justify-center bg-[radial-gradient(circle_at_center,rgba(95,92,241,0.12),transparent_65%)]" />
+              <div className="flex h-full items-center justify-center">
+                <div className="text-5xl">🎮</div>
+              </div>
             )}
+            {/* Overlay gradient */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent dark:from-slate-900/40" />
           </div>
 
-          <div className="absolute bottom-6 left-6 right-6 z-10 flex gap-4 rounded-2xl border border-white/60 bg-white/85 p-4 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-700/80 dark:bg-slate-900/90">
-            <img
-              src={personalInfo.profileImage}
-              alt={personalInfo.fullName}
-              width={88}
-              height={88}
-              className="h-[88px] w-[88px] shrink-0 rounded-2xl object-cover ring-2 ring-primary/20"
-              loading="eager"
-              fetchPriority="high"
-            />
-            <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Featured build</p>
-              <p className="mt-1 truncate font-display text-lg font-semibold text-ink dark:text-slate-50">
-                {featuredProject.name}
-              </p>
-              <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-600 dark:text-slate-300">
-                {featuredProject.summary}
-              </p>
-              <p className="mt-2 font-mono text-[10px] text-slate-500">
-                {featuredProject.org} · {featuredProject.stack}
-              </p>
+          {/* Featured project card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="rounded-xl border border-slate-200/70 bg-white/60 p-4 shadow-sm backdrop-blur-sm dark:border-slate-700/70 dark:bg-slate-900/60"
+          >
+            <div className="flex gap-3">
+              <img
+                src={personalInfo.profileImage}
+                alt={personalInfo.fullName}
+                width={80}
+                height={80}
+                className="h-20 w-20 shrink-0 rounded-lg object-cover ring-2 ring-indigo-500/20"
+                loading="eager"
+                fetchPriority="high"
+              />
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-300">
+                  Featured build
+                </p>
+                <p className="mt-1 truncate font-display font-semibold text-slate-900 dark:text-slate-50">
+                  {featuredProject.name}
+                </p>
+                <p className="mt-1 line-clamp-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
+                  {featuredProject.summary}
+                </p>
+                <p className="mt-2 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                  {featuredProject.org} · {featuredProject.stack}
+                </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
 
-      <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 md:flex">
+          {/* Game instructions */}
+          <p className="text-center text-xs font-medium text-slate-500 dark:text-slate-400">
+            🎮 Press SPACE to start • Use arrows to play • Clear 5+ lines to unlock offers
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 lg:flex">
         <Link
           to="about"
           smooth
           offset={-88}
           duration={500}
-          className="flex cursor-pointer flex-col items-center gap-1 text-xs font-medium text-slate-500 transition hover:text-primary dark:text-slate-400"
+          className="flex cursor-pointer flex-col items-center gap-2 text-xs font-medium text-slate-500 transition hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
         >
-          Scroll
-          <FiArrowDown className="animate-bounce" />
+          Scroll to explore
+          <FiArrowDown className="size-4 animate-bounce" />
         </Link>
       </div>
     </section>
