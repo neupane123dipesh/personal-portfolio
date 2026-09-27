@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiArrowDown, FiArrowRight, FiDownload, FiGithub, FiLinkedin } from 'react-icons/fi';
-import { Link } from 'react-scroll';
-import Badge from '../ui/Badge';
-import TetrisGame from '../ui/TetrisGame';
-import personalInfo from '../../data/personalInfo';
-import { markHireIntent } from '../../utils/hireIntent';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  FiArrowDown,
+  FiArrowRight,
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+} from "react-icons/fi";
+import { Link } from "react-scroll";
+import Badge from "../ui/Badge";
+import TetrisGame from "../ui/TetrisGame";
+import personalInfo from "../../data/personalInfo";
+import { markHireIntent } from "../../utils/hireIntent";
 
 const slideLeft = {
   hidden: { opacity: 0, x: -28 },
@@ -19,9 +25,17 @@ const slideRight = {
 
 export default function Hero() {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [siteLoaded, setSiteLoaded] = useState(false);
 
   useEffect(() => {
-    setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    setReducedMotion(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    );
+    // Defer game loading until site entrance finishes
+    const timer = setTimeout(() => {
+      setSiteLoaded(true);
+    }, 1200);
+    return () => clearTimeout(timer);
   }, []);
 
   const { featuredProject } = personalInfo;
@@ -46,12 +60,17 @@ export default function Hero() {
       >
         <div className="max-w-lg space-y-8">
           <div>
-            <Badge dot className="mb-8 border-indigo-500/20 bg-indigo-500/5 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-200">
+            <Badge
+              dot
+              className="mb-8 border-indigo-500/20 bg-indigo-500/5 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-200"
+            >
               {personalInfo.freelanceStatus} · {personalInfo.location}
             </Badge>
 
             <h1 className="font-display text-[clamp(2.8rem,5.5vw,4.5rem)] font-bold leading-[1.02] tracking-[-0.06em] text-slate-900 dark:text-slate-50">
-              <span className="block text-slate-600 dark:text-slate-300">Hi, I&apos;m {personalInfo.firstName}.</span>
+              <span className="block text-slate-600 dark:text-slate-300">
+                Hi, I&apos;m {personalInfo.firstName}.
+              </span>
               <span className="mt-3 block bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-500 bg-clip-text text-transparent">
                 {personalInfo.title}
               </span>
@@ -102,7 +121,11 @@ export default function Hero() {
               <motion.div
                 key={stat.label}
                 animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
-                transition={{ duration: 3.2, repeat: Infinity, delay: index * 0.12 }}
+                transition={{
+                  duration: 3.2,
+                  repeat: Infinity,
+                  delay: index * 0.12,
+                }}
               >
                 <p className="font-display text-2xl font-bold text-slate-900 dark:text-slate-50 md:text-3xl">
                   {stat.value}
@@ -139,64 +162,108 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Right side - Game */}
+      {/* Right side - Spacious Interactive Game Area */}
       <motion.div
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        className="relative flex flex-col items-center justify-center overflow-hidden px-4 py-12 sm:px-6 md:px-8 lg:py-0"
+        className="relative flex flex-col items-center justify-center px-4 py-8 sm:px-6 md:px-8 lg:py-6"
       >
-        <div className="relative w-full max-w-md space-y-4">
-          {/* Game container */}
-          <div className="relative h-[360px] overflow-hidden rounded-2xl border border-slate-200/70 shadow-[0_30px_80px_rgba(15,23,42,0.12)] dark:border-slate-700/70 dark:shadow-[0_30px_80px_rgba(15,23,42,0.35)] flex items-center justify-center bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
-            {!reducedMotion && <TetrisGame />}
-            {reducedMotion && (
-              <div className="flex h-full items-center justify-center">
-                <div className="text-5xl">🎮</div>
+        <div className="relative flex w-full max-w-lg flex-col items-center space-y-4">
+          {/* Deferred Game Loading Container */}
+          {!siteLoaded ? (
+            <div className="flex min-h-[500px] w-full flex-col items-center justify-center rounded-3xl border border-slate-200/80 bg-white/60 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/60">
+              <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-500/10 text-3xl">
+                <span className="animate-spin text-2xl">⚙️</span>
+                <span className="absolute -right-1 -top-1 flex h-3 w-3">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
+                  <span className="relative inline-flex h-3 w-3 rounded-full bg-indigo-500" />
+                </span>
               </div>
-            )}
-            {/* Overlay gradient */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent dark:from-slate-900/40" />
-          </div>
-
-          {/* Featured project card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="rounded-xl border border-slate-200/70 bg-white/60 p-4 shadow-sm backdrop-blur-sm dark:border-slate-700/70 dark:bg-slate-900/60"
-          >
-            <div className="flex gap-3">
-              <img
-                src={personalInfo.profileImage}
-                alt={personalInfo.fullName}
-                width={80}
-                height={80}
-                className="h-20 w-20 shrink-0 rounded-lg object-cover ring-2 ring-indigo-500/20"
-                loading="eager"
-                fetchPriority="high"
-              />
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-300">
-                  Featured build
-                </p>
-                <p className="mt-1 truncate font-display font-semibold text-slate-900 dark:text-slate-50">
-                  {featuredProject.name}
-                </p>
-                <p className="mt-1 line-clamp-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
-                  {featuredProject.summary}
-                </p>
-                <p className="mt-2 font-mono text-[10px] text-slate-500 dark:text-slate-400">
-                  {featuredProject.org} · {featuredProject.stack}
-                </p>
+              <p className="mt-5 font-mono text-sm font-semibold tracking-wider text-slate-700 dark:text-slate-200">
+                INITIALIZING ARCADE MATRIX
+              </p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Calibrating audio synthesizer and tetromino grid...
+              </p>
+              <div className="mt-6 h-1.5 w-48 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+                <motion.div
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "100%" }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 1.2,
+                    ease: "easeInOut",
+                  }}
+                  className="h-full w-1/2 rounded-full bg-gradient-to-r from-indigo-500 to-sky-400"
+                />
               </div>
             </div>
-          </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="w-full flex justify-center"
+            >
+              {!reducedMotion ? (
+                <TetrisGame />
+              ) : (
+                <div className="flex min-h-[400px] w-full items-center justify-center rounded-3xl border border-slate-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-900">
+                  <div className="text-center">
+                    <div className="text-5xl">🎮</div>
+                    <p className="mt-3 text-sm text-slate-500">
+                      Reduced motion mode active
+                    </p>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          )}
 
-          {/* Game instructions */}
-          <p className="text-center text-xs font-medium text-slate-500 dark:text-slate-400">
-            🎮 Press SPACE to start • Use arrows to play • Clear 5+ lines to unlock offers
-          </p>
+          {/* Featured build pill - elegantly integrated without crowding */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="w-full"
+          >
+            <Link
+              to="projects"
+              smooth
+              offset={-88}
+              duration={500}
+              className="group flex w-full items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white/70 p-3 shadow-sm backdrop-blur-md transition hover:border-indigo-400 hover:bg-white/95 hover:shadow-md dark:border-slate-800/80 dark:bg-slate-900/70 dark:hover:border-indigo-500 dark:hover:bg-slate-900"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <img
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.fullName}
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 shrink-0 rounded-xl object-cover ring-2 ring-indigo-500/20"
+                  loading="eager"
+                />
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                      Featured Build
+                    </span>
+                    <span className="rounded bg-slate-100 px-1.5 py-0.2 text-[9px] font-mono text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                      {featuredProject.org}
+                    </span>
+                  </div>
+                  <p className="truncate text-xs font-semibold text-slate-900 dark:text-slate-100">
+                    {featuredProject.name} —{" "}
+                    <span className="font-normal text-slate-500 dark:text-slate-400">
+                      {featuredProject.summary}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <FiArrowRight className="size-4 shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" />
+            </Link>
+          </motion.div>
         </div>
       </motion.div>
 

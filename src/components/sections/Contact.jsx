@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import { FiCheckCircle, FiMapPin, FiMail, FiPhone, FiSend, FiXCircle } from 'react-icons/fi';
 import personalInfo from '../../data/personalInfo';
 import Toast from '../ui/Toast';
@@ -76,7 +77,13 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="mb-10 max-w-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          className="mb-10 max-w-2xl"
+        >
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Contact</p>
           <h2 className="mt-3 font-display text-4xl text-ink dark:text-slate-100 md:text-5xl">Let&apos;s work together.</h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
@@ -86,9 +93,15 @@ export default function Contact() {
             </a>
             .
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
+        >
           <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_40px_rgba(15,23,42,0.05)] dark:border-slate-800 dark:bg-slate-900">
             <h3 className="font-display text-2xl text-ink dark:text-slate-100">Direct</h3>
             <div className="mt-8 space-y-5 text-sm text-slate-600 dark:text-slate-300">
@@ -206,7 +219,7 @@ export default function Contact() {
               </p>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
 
       <Toast message={toast.message} visible={toast.visible} type={toast.type} />

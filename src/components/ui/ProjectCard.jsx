@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { FiArrowRight, FiExternalLink } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import BrowserFrame from './BrowserFrame';
-import ProjectPreview from './ProjectPreview';
+import { motion } from "framer-motion";
+import { FiArrowRight, FiExternalLink } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import BrowserFrame from "./BrowserFrame";
+import ProjectPreview from "./ProjectPreview";
 
 export default function ProjectCard({ project }) {
   return (
@@ -10,7 +10,13 @@ export default function ProjectCard({ project }) {
       layout
       className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-3 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-card dark:border-slate-800 dark:bg-slate-900"
     >
-      <BrowserFrame title={project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, '') : project.title}>
+      <BrowserFrame
+        title={
+          project.liveUrl
+            ? project.liveUrl.replace(/^https?:\/\//, "")
+            : project.title
+        }
+      >
         <ProjectPreview project={project} className="h-56" />
       </BrowserFrame>
 
@@ -25,8 +31,12 @@ export default function ProjectCard({ project }) {
             </span>
           ))}
         </div>
-        <h3 className="font-display text-xl text-ink dark:text-slate-100">{project.title}</h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{project.description}</p>
+        <h3 className="font-display text-xl text-ink dark:text-slate-100">
+          {project.title}
+        </h3>
+        <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {project.description}
+        </p>
 
         <div className="mt-5 flex flex-wrap items-center gap-4">
           {project.liveUrl && (
