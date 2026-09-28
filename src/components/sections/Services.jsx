@@ -1,45 +1,44 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
-import Card from "../ui/Card";
 import servicesData from "../../data/servicesData";
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-28">
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
+    <section id="services" className="section-tint-b py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
           <SectionHeading
             eyebrow="Services"
-            title="Digital services designed to turn ideas into products."
+            title="Digital services, built to ship."
             description="I help founders, teams, and personal brands turn strategy into thoughtful interfaces, stronger systems, and clearer user experiences."
           />
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {servicesData.map(({ icon: Icon, title, description }, index) => (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {servicesData.map(({ icon: Icon, title, description }, i) => (
             <motion.div
               key={title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.35, delay: i * 0.05 }}
+              className="group rounded-xl border border-slate-200/90 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/90 dark:hover:border-slate-700"
             >
-              <Card className="group h-full p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card hover:border-primary/25">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-xl text-primary transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
-                  <Icon />
-                </div>
-                <h3 className="font-display text-2xl text-ink dark:text-slate-100">
-                  {title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
-                  {description}
-                </p>
-              </Card>
+              {/* Clean icon container */}
+              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-lg text-white shadow-sm transition-transform duration-200 group-hover:scale-105 dark:bg-white dark:text-slate-900">
+                <Icon />
+              </div>
+              <h3 className="font-display text-base font-bold text-slate-900 dark:text-slate-100">
+                {title}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                {description}
+              </p>
             </motion.div>
           ))}
         </div>
